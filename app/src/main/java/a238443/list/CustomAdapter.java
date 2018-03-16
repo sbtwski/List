@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,12 +15,17 @@ public class CustomAdapter extends BaseAdapter {
     private ArrayList<Person> ai_database = new ArrayList<>();
     private LayoutInflater li_custom;
 
-    public CustomAdapter(Context ctxForAdapter) {
+    CustomAdapter(Context ctxForAdapter) {
         li_custom = (LayoutInflater)ctxForAdapter.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public void addItem(final Person pItem) {
+    void v_addItem(final Person pItem) {
         ai_database.add(pItem);
+        notifyDataSetChanged();
+    }
+
+    private void v_removeItem(int iPosition) {
+        ai_database.remove(iPosition);
         notifyDataSetChanged();
     }
 
@@ -39,12 +45,12 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View vi_currentView = convertView;
         PersonHolder ph_holder = new PersonHolder();
 
         if(convertView == null) {
-            vi_currentView = li_custom.inflate(R.layout.list_element, null);
+            vi_currentView = li_custom.inflate(R.layout.list_element,null);
 
             ph_holder.tv_name = vi_currentView.findViewById(R.id.personal_text);
             ph_holder.tv_birth = vi_currentView.findViewById(R.id.age_text);
@@ -64,6 +70,14 @@ public class CustomAdapter extends BaseAdapter {
         ph_holder.tv_birth.setText(s_tempData);
 
         ph_holder.iv_avatar.setImageResource(R.drawable.ic_avatar);
+
+        Button bt_delete = vi_currentView.findViewById(R.id.removal_button);
+        bt_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v_removeItem(position);
+            }
+        });
 
         return vi_currentView;
     }

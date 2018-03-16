@@ -1,5 +1,6 @@
 package a238443.list;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
     CustomAdapter ca_myAdapter;
+    private static final int REQUEST_CODE = 0x9988;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,16 +20,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ca_myAdapter = new CustomAdapter(getApplicationContext());
-
-        ca_myAdapter.addItem(new Person("Adam","Nowak",31));
-        ca_myAdapter.addItem(new Person("Anna","Kowalska",15));
-        ca_myAdapter.addItem(new Person("Krzysztof","Krawczyk",133));
-        ca_myAdapter.addItem(new Person("Sylwia","Judek",27));
-
-        ca_myAdapter.addItem(new Person("Adam","Nowak",31));
-        ca_myAdapter.addItem(new Person("Anna","Kowalska",15));
-        ca_myAdapter.addItem(new Person("Krzysztof","Krawczyk",133));
-        ca_myAdapter.addItem(new Person("Sylwia","Judek",27));
 
         Toolbar tl_mainToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(tl_mainToolbar);
@@ -46,8 +38,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_add) {
-            startActivity(new Intent(this, AddActivity.class));
+            startActivityForResult(new Intent(this, AddActivity.class),REQUEST_CODE);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == REQUEST_CODE) {
+            if(resultCode == Activity.RESULT_OK) {
+                Person p_input = (Person) data.getSerializableExtra("person");
+                ca_myAdapter.v_addItem(p_input);
+            }
+        }
     }
 }

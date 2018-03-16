@@ -6,7 +6,8 @@
     android:layout_height="@dimen/list_element_height"
     android:orientation="horizontal"
     android:weightSum="10"
-    tools:layout_editor_absoluteY="81dp">
+    tools:layout_editor_absoluteY="81dp"
+    android:background="@color/colorAdditional">
 
 
     <ImageView
