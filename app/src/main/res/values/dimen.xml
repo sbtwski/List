@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_element_height">80dp</dimen>
+    <dimen name="list_element_half_height">40dp</dimen>
+
+    <dimen name="small_margin">5dp</dimen>
+    <dimen name="big_margin">50dp</dimen>
+    <dimen name="list_removal_margin">20dp</dimen>
+
+    <dimen name="medium_font">20sp</dimen>
+    <dimen name="list_font">22sp</dimen>
+    <dimen name="button_margin">22dp</dimen>
+
+</resources>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">List</string>
+    
+    <string name="action_add_person">Add person</string>
+    <string name="action_accept_entry">Accept data</string>
+
+    <string name="avatar_desc">Personal avatar</string>
+
+    <string name="tv_name">Name:</string>
+    <string name="tv_surname">Surname:</string>
+    <string name="tv_birth">Date of birth:</string>
+
+
+</resources>
