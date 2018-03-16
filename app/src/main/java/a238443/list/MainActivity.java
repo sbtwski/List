@@ -10,6 +10,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
+
 public class MainActivity extends AppCompatActivity {
     CustomAdapter ca_myAdapter;
     private static final int REQUEST_CODE = 0x9988;
@@ -33,6 +36,19 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putSerializable("database",ca_myAdapter.al_getDatabase());
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        ca_myAdapter.v_addDatabase((ArrayList<Person>)savedInstanceState.getSerializable("database"));
     }
 
     @Override

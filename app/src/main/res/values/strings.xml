@@ -10,5 +10,14 @@
     <string name="tv_surname">Surname:</string>
     <string name="tv_birth">Date of birth:</string>
 
+    <string name="input_empty">This field cannot be empty</string>
+    <string name="date_format">dd/MM/yyyy</string>
+    <string name="date_hint">dd/mm/yyyy</string>
+
+    <string name="invalid_date">Invalid date</string>
+    <string name="saved_data">People_base</string>
+
+    <string name="month_fail">No such month</string>
+    <string name="day_fail">No such day in month</string>
 
 </resources>
